@@ -1,0 +1,268 @@
+{
+  "phishing": {
+    "trained_at": "2026-10-02T07:24:42.160900+00:00",
+    "algorithm": "RandomForestClassifier",
+    "n_estimators": 400,
+    "class_weight": "balanced_subsample",
+    "feature_names": [
+      "url_length",
+      "num_dots",
+      "num_hyphens",
+      "has_https",
+      "has_ip",
+      "host_length",
+      "num_subdirs",
+      "num_params",
+      "suspicious_words",
+      "special_char_count",
+      "digits_count",
+      "entropy",
+      "at_symbol",
+      "double_slash_in_path",
+      "punycode",
+      "host_is_ip",
+      "nonstandard_port",
+      "suspicious_tld",
+      "tld_entropy",
+      "path_entropy",
+      "query_entropy",
+      "tld"
+    ],
+    "n_train_rows": 20574,
+    "n_test_rows": 32013,
+    "raw_class_distribution": {
+      "1": 159244,
+      "0": 820
+    },
+    "metrics": {
+      "accuracy": 0.998219,
+      "macro_precision": 0.879117,
+      "macro_recall": 0.977874,
+      "macro_f1": 0.922733,
+      "weighted_f1": 0.998322,
+      "labels": [
+        "0",
+        "1"
+      ],
+      "confusion_matrix": [
+        [
+          157,
+          7
+        ],
+        [
+          50,
+          31799
+        ]
+      ],
+      "support": {
+        "0": 164,
+        "1": 31849
+      },
+      "per_class": {
+        "0": {
+          "precision": 0.758454,
+          "recall": 0.957317,
+          "f1": 0.846361,
+          "support": 164
+        },
+        "1": {
+          "precision": 0.99978,
+          "recall": 0.99843,
+          "f1": 0.999105,
+          "support": 31849
+        }
+      }
+    },
+    "validation_metrics": {
+      "accuracy": 0.998063,
+      "macro_precision": 0.86691,
+      "macro_recall": 0.986894,
+      "macro_f1": 0.918361,
+      "weighted_f1": 0.998199,
+      "labels": [
+        "0",
+        "1"
+      ],
+      "confusion_matrix": [
+        [
+          80,
+          2
+        ],
+        [
+          29,
+          15895
+        ]
+      ],
+      "support": {
+        "0": 82,
+        "1": 15924
+      },
+      "per_class": {
+        "0": {
+          "precision": 0.733945,
+          "recall": 0.97561,
+          "f1": 0.837696,
+          "support": 82
+        },
+        "1": {
+          "precision": 0.999874,
+          "recall": 0.998179,
+          "f1": 0.999026,
+          "support": 15924
+        }
+      }
+    },
+    "feature_importances": {
+      "num_subdirs": 0.20319,
+      "url_length": 0.18618,
+      "num_dots": 0.175859,
+      "path_entropy": 0.108422,
+      "digits_count": 0.075647,
+      "entropy": 0.064704,
+      "tld_entropy": 0.054904,
+      "has_https": 0.032748,
+      "host_length": 0.025972,
+      "tld": 0.023238,
+      "num_hyphens": 0.017031,
+      "host_is_ip": 0.015081,
+      "has_ip": 0.011132,
+      "nonstandard_port": 0.003325,
+      "query_entropy": 0.000851,
+      "suspicious_words": 0.000568,
+      "special_char_count": 0.000486,
+      "num_params": 0.000443,
+      "suspicious_tld": 0.000206,
+      "at_symbol": 8e-06,
+      "double_slash_in_path": 2e-06,
+      "punycode": 0.0
+    },
+    "confusion_matrix_path": "phishing_confusion_matrix.png",
+    "limitations": [
+      "The legitimate class contains only 820 bare apex domains with no path segments, while every phishing URL includes one. The model has therefore never seen a legitimate URL containing a path and will over-flag such URLs.",
+      "Accuracy on the held-out test split is not a generalisation estimate for internet traffic; the classes are close to linearly separable in this feature space."
+    ]
+  },
+  "spam": {
+    "trained_at": "2026-10-02T07:25:24.685251+00:00",
+    "algorithm": "MultinomialNB",
+    "vectorizer": "TfidfVectorizer",
+    "alpha": 0.1,
+    "vocabulary_size": 31099,
+    "n_train_rows": 4125,
+    "n_test_rows": 1032,
+    "class_distribution": {
+      "ham": 4825,
+      "spam": 747
+    },
+    "metrics": {
+      "accuracy": 0.982558,
+      "macro_precision": 0.986297,
+      "macro_recall": 0.933041,
+      "macro_f1": 0.957566,
+      "weighted_f1": 0.982053,
+      "labels": [
+        "ham",
+        "spam"
+      ],
+      "confusion_matrix": [
+        [
+          903,
+          1
+        ],
+        [
+          17,
+          111
+        ]
+      ],
+      "support": {
+        "ham": 904,
+        "spam": 128
+      },
+      "per_class": {
+        "ham": {
+          "precision": 0.981522,
+          "recall": 0.998894,
+          "f1": 0.990132,
+          "support": 904
+        },
+        "spam": {
+          "precision": 0.991071,
+          "recall": 0.867188,
+          "f1": 0.925,
+          "support": 128
+        }
+      }
+    },
+    "train_metrics": {
+      "accuracy": 1.0,
+      "macro_precision": 1.0,
+      "macro_recall": 1.0,
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "labels": [
+        "ham",
+        "spam"
+      ],
+      "confusion_matrix": [
+        [
+          3612,
+          0
+        ],
+        [
+          0,
+          513
+        ]
+      ],
+      "support": {
+        "ham": 3612,
+        "spam": 513
+      },
+      "per_class": {
+        "ham": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3612
+        },
+        "spam": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 513
+        }
+      }
+    },
+    "confusion_matrix_path": "spam_confusion_matrix.png",
+    "top_spam_terms": [
+      "claim",
+      "prize",
+      "150p",
+      "guaranteed",
+      "18",
+      "tone",
+      "1000",
+      "500",
+      "awarded",
+      "cs",
+      "www",
+      "landline",
+      "ringtone",
+      "attempt",
+      "000",
+      "150ppm",
+      "10p",
+      "valid",
+      "bonus",
+      "750",
+      "collection",
+      "prize guaranteed",
+      "urgent mobile",
+      "entry",
+      "uk"
+    ],
+    "limitations": [
+      "The corpus is SMS-style short messages from the Enron/SMS Spam collection, so performance on long HTML marketing emails will be lower than reported here.",
+      "No model can guarantee that a message is safe; treat the result as one signal."
+    ]
+  }
+}

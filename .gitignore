@@ -1,0 +1,50 @@
+# --- Secrets ---------------------------------------------------------------
+# Never commit real keys.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --- Tests and tooling ------------------------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- Training output and caches --------------------------------------------
+# Trained artifacts are committed on purpose so the app runs without retraining.
+# Caches and intermediates are not.
+*.log
+*.tmp
+.cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Large source datasets are kept locally; the working copies under data/ are
+# the ones the app trains from. Uncomment if you prefer not to track them.
+# data/*.csv

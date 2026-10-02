@@ -1,0 +1,36 @@
+# CyberShield AI - runtime dependencies
+#
+# Install with:  pip install -r requirements.txt
+# Pinned to the versions this project was built and tested against.
+
+# --- Web UI -----------------------------------------------------------------
+streamlit==1.64.0
+
+# --- Machine learning -------------------------------------------------------
+pandas==2.3.3
+numpy==2.2.6
+scikit-learn==1.7.2
+joblib==1.5.3
+
+# --- QR decoding ------------------------------------------------------------
+# The headless build is used deliberately: it omits the GUI/GL libraries that
+# are absent on Render and cause `libGL.so.1` import failures in containers.
+opencv-python-headless==5.0.0.93
+
+# --- External services ------------------------------------------------------
+requests==2.34.2
+groq==1.7.0
+
+# --- Configuration ----------------------------------------------------------
+python-dotenv==1.2.2
+
+# --- Training-time plotting -------------------------------------------------
+# Only imported by training/evaluate_models.py to save confusion matrices, so a
+# production install can skip these two lines if artifacts are already built.
+matplotlib==3.10.9
+
+# --- Test-only helpers ------------------------------------------------------
+# `qrcode` renders sample QR images for the test suite; `pytest` runs the tests.
+# They are grouped at the end because neither is needed to serve the app.
+qrcode==8.2
+pytest==8.3.3

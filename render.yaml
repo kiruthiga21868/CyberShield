@@ -1,0 +1,34 @@
+# Render blueprint for CyberShield AI.
+#
+# Deploy with: New > Blueprint > point at this repository.
+# Models are committed under models/, so the models need no runtime training.
+#
+# Set these environment variables in the Render dashboard (do NOT commit them):
+#   GROQ_API_KEY        optional - live chatbot; offline knowledge base without it
+#   VIRUSTOTAL_API_KEY  optional - URL reputation enrichment; local results without it
+
+services:
+  - type: web
+    name: cybershield-ai
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: >-
+      streamlit run app.py
+      --server.address=0.0.0.0
+      --server.port=$PORT
+      --server.headless=true
+      --browser.gatherUsageStats=false
+    healthCheckPath: /_stcore/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # Set `sync: false` and paste your key in the dashboard to enable these.
+      - key: GROQ_API_KEY
+        sync: false
+      - key: VIRUSTOTAL_API_KEY
+        sync: false
